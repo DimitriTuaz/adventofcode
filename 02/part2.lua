@@ -1,3 +1,4 @@
+local input_file = require 'input_file'
 
 local function correct_id(id1, id2)
     local len = id1:len()
@@ -14,9 +15,7 @@ local function correct_id(id1, id2)
     return true
 end
 
-local f = assert(io.open("input.txt", r))
-local s = f:read("a")
-
+local s = input_file.read_file("input.txt")
 local id1 = s:match("%a+")
 local pos = id1:len() + 1
 local pos_g = pos
@@ -31,12 +30,11 @@ while true do
             print("Correct ids :")
             print(id1, "| line :", pos_g // (id1:len() + 1))
             print(id2, "| line :", pos // (id2:len() + 1))
-            f:close()
             return
         end
     end
     id1 =  s:match("%a+", pos_g)
     pos_g = pos_g + id1:len() + 1
     pos = pos_g
-    if not id1 then f:close(); return end
+    if not id1 then return end
 end

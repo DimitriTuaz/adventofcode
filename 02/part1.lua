@@ -1,5 +1,6 @@
-local f = assert(io.open("input.txt", r))
-local s = f:read("a")
+local input_file = require 'input_file'
+
+local s = input_file.read_file("input.txt")
 
 local two, three = 0, 0
 
@@ -19,6 +20,5 @@ for id in s:gmatch("%a+") do
     end
 end
 
-f:close()
 print(two * three)
 
